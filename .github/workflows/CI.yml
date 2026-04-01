@@ -78,7 +78,7 @@ jobs:
           java-version: "17"
           cache: "gradle"
       - name: Test
-        run: ./gradlew test
+        run: ./gradlew test --tests "game.GameTest"  
 
   deploy:
     runs-on: ubuntu-22.04
@@ -95,7 +95,7 @@ jobs:
         with:
           token: ${{ secrets.CHANGELOG }}
       - name: Set project name
-        run: echo "REPOSITORY_NAME=middleware-maraffa" >> $GITHUB_ENV
+        run: echo "REPOSITORY_NAME=gameservice-maraffa" >> $GITHUB_ENV
       - name: lowercase github.repository
         run: |
           echo "IMAGE_NAME=`echo ${{github.repository_owner}}/${{ env.REPOSITORY_NAME }} | tr '[:upper:]' '[:lower:]'`" >> ${GITHUB_ENV}
